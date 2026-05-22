@@ -1303,6 +1303,14 @@ textarea.form-control {
     padding: 2.5rem 2rem !important;
     gap: 2rem !important;
   }
+  .next-show-card div:nth-child(2) {
+    width: 100% !important;
+  }
+  .next-show-card .btn {
+    width: 100% !important;
+    display: block !important;
+    box-sizing: border-box !important;
+  }
   .tour-action {
     justify-self: center;
   }

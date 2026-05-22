@@ -1,0 +1,23 @@
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Files that might be created on the Fly
+Thumbs.db
+ehthumbs.db
+
+# IDE & Editor Metadata
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Temporary files
+*.log
+tmp/
+temp/

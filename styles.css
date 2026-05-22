@@ -1270,6 +1270,9 @@ textarea.form-control {
     transition: var(--transition-smooth);
     z-index: 999;
   }
+  .theme-switcher-container {
+    gap: 1rem;
+  }
   .nav-menu.open {
     right: 0;
   }

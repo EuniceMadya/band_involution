@@ -1272,6 +1272,13 @@ textarea.form-control {
   section {
     padding: 6rem 0;
   }
+  nav {
+    position: absolute !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: visible !important;
+    pointer-events: none !important;
+  }
   .nav-menu {
     position: fixed;
     top: 0;
@@ -1286,6 +1293,10 @@ textarea.form-control {
     gap: 3rem;
     transition: var(--transition-smooth);
     z-index: 999;
+    pointer-events: auto !important;
+  }
+  .nav-menu.open {
+    right: 0 !important;
   }
   .nav-container {
     position: relative !important;

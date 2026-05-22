@@ -1249,6 +1249,23 @@ textarea.form-control {
   .tour-status {
     display: none;
   }
+  .next-show-card {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+    padding: 2.5rem 2rem !important;
+    gap: 2rem !important;
+  }
+  .next-show-card div:nth-child(2) {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  .next-show-card .btn {
+    width: 100% !important;
+    display: block !important;
+    box-sizing: border-box !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1296,20 +1313,6 @@ textarea.form-control {
     text-align: center;
     gap: 1.5rem;
     padding: 2rem;
-  }
-  .next-show-card {
-    grid-template-columns: 1fr !important;
-    text-align: center !important;
-    padding: 2.5rem 2rem !important;
-    gap: 2rem !important;
-  }
-  .next-show-card div:nth-child(2) {
-    width: 100% !important;
-  }
-  .next-show-card .btn {
-    width: 100% !important;
-    display: block !important;
-    box-sizing: border-box !important;
   }
   .tour-action {
     justify-self: center;

@@ -1297,6 +1297,12 @@ textarea.form-control {
     gap: 1.5rem;
     padding: 2rem;
   }
+  .next-show-card {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+    padding: 2.5rem 2rem !important;
+    gap: 2rem !important;
+  }
   .tour-action {
     justify-self: center;
   }

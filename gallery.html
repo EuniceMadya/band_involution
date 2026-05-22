@@ -99,7 +99,6 @@
       overflow-x: auto;
       scroll-behavior: smooth;
       padding: 0.5rem 0;
-      /* Hide scrollbar but keep functionality */
       scrollbar-width: none; /* Firefox */
     }
     .rolling-track::-webkit-scrollbar {
@@ -107,22 +106,95 @@
     }
     
     .gallery-page-card {
-      flex: 0 0 320px; /* Fixed width for cards inside horizontal track */
-      height: 240px;
-      border-radius: 16px;
-      overflow: hidden;
+      width: 100%;
+      height: 100%;
       background: var(--bg-secondary);
       border: 1px solid var(--glass-border);
-      cursor: pointer;
-      box-shadow: var(--glass-shadow);
+      border-radius: 16px;
       position: relative;
+      overflow: hidden;
+      box-shadow: var(--glass-shadow);
       transition: var(--transition-smooth);
     }
     
     .gallery-page-card:hover {
-      transform: translateY(-5px) scale(1.02);
+      border-color: var(--accent-cyan);
+    }
+    
+    /* 3D Gallery Card Flip CSS */
+    .gallery-flip-container {
+      perspective: 1000px;
+      flex: 0 0 320px;
+      height: 240px;
+    }
+    .gallery-flip-card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .gallery-flip-container.flipped .gallery-flip-card {
+      transform: rotateY(180deg);
+    }
+    .gallery-face {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .gallery-face-back {
+      transform: rotateY(180deg);
+    }
+    
+    /* Single Card Wrap */
+    .single-card-wrap {
+      flex: 0 0 320px;
+      height: 240px;
+      cursor: pointer;
+    }
+    .single-card-wrap:hover .gallery-page-card {
+      transform: translateY(-5px);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
       border-color: var(--accent-cyan);
+    }
+    
+    /* Overlay Controls */
+    .card-actions-bar {
+      position: absolute;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 15;
+    }
+    .card-action-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(6, 7, 13, 0.85);
+      border: 1px solid var(--glass-border);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    .card-action-btn:hover {
+      color: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+      transform: scale(1.1);
+    }
+    .card-action-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
     }
     
     /* Full-screen Lightbox Modal */
@@ -155,7 +227,7 @@
       align-items: center;
       justify-content: center;
     }
-    .lightbox-content svg, .lightbox-content img {
+    .lightbox-content img {
       width: auto;
       height: auto;
       max-width: 100%;
@@ -264,94 +336,146 @@
         <div class="rolling-window">
           <div class="rolling-track" id="track-gigs">
             
-            <!-- Gig 1: Neo-Classica -->
-            <div class="gallery-page-card gallery-item" data-category="Live Gigs" data-title="Neo-Classica: Anime Nocturne">
-              <div class="gallery-visual" style="width: 100%; height: 100%;">
-                <img src="gallery/photos/2026%20neo%20classica.jpg" alt="Neo-Classica: Anime Nocturne" style="width: 100%; height: 100%; object-fit: cover;">
-              </div>
-              <div class="gallery-overlay">
-                <span class="gallery-category">Live Gigs</span>
-                <h4 class="gallery-title">Neo-Classica Nocturne</h4>
-              </div>
-            </div>
-
-            <!-- Gig 2: Jamfest -->
-            <div class="gallery-page-card gallery-item" data-category="Live Gigs" data-title="Jamfest Concert">
-              <div class="gallery-visual" style="width: 100%; height: 100%;">
-                <img src="gallery/photos/2025_jamfest.webp" alt="Jamfest Concert" style="width: 100%; height: 100%; object-fit: cover;">
-              </div>
-              <div class="gallery-overlay">
-                <span class="gallery-category">Live Gigs</span>
-                <h4 class="gallery-title">Jamfest Concert</h4>
+            <!-- Gig 1: Neo-Classica (Single) -->
+            <div class="single-card-wrap gallery-item" data-src="gallery/photos/2026%20neo%20classica.jpg" data-title="Neo-Classica: Anime Nocturne" data-category="Live Gigs">
+              <div class="gallery-page-card">
+                <div class="gallery-visual" style="width: 100%; height: 100%;">
+                  <img src="gallery/photos/2026%20neo%20classica.jpg" alt="Neo-Classica: Anime Nocturne" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="gallery-overlay">
+                  <span class="gallery-category">Live Gigs</span>
+                  <h4 class="gallery-title">Neo-Classica Nocturne</h4>
+                </div>
               </div>
             </div>
 
-            <!-- Gig 3: UNSW Halloween -->
-            <div class="gallery-page-card gallery-item" data-category="Live Gigs" data-title="UNSW Halloween Stage">
-              <div class="gallery-visual" style="width: 100%; height: 100%;">
-                <img src="gallery/photos/2025%20halloween.webp" alt="UNSW Halloween Stage" style="width: 100%; height: 100%; object-fit: cover;">
-              </div>
-              <div class="gallery-overlay">
-                <span class="gallery-category">Live Gigs</span>
-                <h4 class="gallery-title">UNSW Halloween</h4>
-              </div>
-            </div>
-
-            <!-- Gig 4: Jfest -->
-            <div class="gallery-page-card gallery-item" data-category="Live Gigs" data-title="Jfest Sydney">
-              <div class="gallery-visual" style="width: 100%; height: 100%;">
-                <img src="gallery/photos/2025%20jfest.JPG" alt="Jfest Sydney" style="width: 100%; height: 100%; object-fit: cover;">
-              </div>
-              <div class="gallery-overlay">
-                <span class="gallery-category">Live Gigs</span>
-                <h4 class="gallery-title">Jfest Sydney</h4>
+            <!-- Gig 2: Jamfest (Single) -->
+            <div class="single-card-wrap gallery-item" data-src="gallery/photos/2025_jamfest.webp" data-title="Jamfest Concert" data-category="Live Gigs">
+              <div class="gallery-page-card">
+                <div class="gallery-visual" style="width: 100%; height: 100%;">
+                  <img src="gallery/photos/2025_jamfest.webp" alt="Jamfest Concert" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="gallery-overlay">
+                  <span class="gallery-category">Live Gigs</span>
+                  <h4 class="gallery-title">Jamfest Concert</h4>
+                </div>
               </div>
             </div>
 
-            <!-- Gig 5: Wildfire -->
-            <div class="gallery-page-card gallery-item" data-category="Live Gigs" data-title="Wildfire Live Concert">
-              <div class="gallery-visual" style="width: 100%; height: 100%;">
-                <img src="gallery/photos/2024%20wildfire.JPG" alt="Wildfire Live Concert" style="width: 100%; height: 100%; object-fit: cover;">
-              </div>
-              <div class="gallery-overlay">
-                <span class="gallery-category">Live Gigs</span>
-                <h4 class="gallery-title">Mary's Underground</h4>
+            <!-- Gig 3: UNSW Halloween Stage (3D Flipping Card!) -->
+            <div class="gallery-flip-container event-flip-card">
+              <div class="gallery-flip-card">
+                <!-- Front Face -->
+                <div class="gallery-face gallery-page-card">
+                  <div class="gallery-visual" style="width: 100%; height: 100%;">
+                    <img src="gallery/photos/2025%20halloween.webp" alt="UNSW Halloween" style="width: 100%; height: 100%; object-fit: cover;">
+                  </div>
+                  <div class="gallery-overlay">
+                    <span class="gallery-category">Live Gigs &bull; [ 2 Angles ]</span>
+                    <h4 class="gallery-title">UNSW Halloween Stage</h4>
+                  </div>
+                  <!-- Front Actions -->
+                  <div class="card-actions-bar">
+                    <button class="card-action-btn trigger-fs-btn" data-src="gallery/photos/2025%20halloween.webp" data-title="UNSW Halloween Stage" data-category="Live Gigs" title="Fullscreen">
+                      <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                    </button>
+                    <button class="card-action-btn trigger-flip-btn" title="Flip Angle">
+                      <svg viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z"/></svg>
+                    </button>
+                  </div>
+                </div>
+                <!-- Back Face -->
+                <div class="gallery-face gallery-face-back gallery-page-card">
+                  <div class="gallery-visual" style="width: 100%; height: 100%;">
+                    <img src="gallery/photos/2025%20halloween%20with%20Sunset%20Morioh.webp" alt="UNSW Halloween (Sunset Morioh)" style="width: 100%; height: 100%; object-fit: cover;">
+                  </div>
+                  <div class="gallery-overlay">
+                    <span class="gallery-category">Live Gigs &bull; [ Sunset Morioh ]</span>
+                    <h4 class="gallery-title">Halloween Stage B</h4>
+                  </div>
+                  <!-- Back Actions -->
+                  <div class="card-actions-bar">
+                    <button class="card-action-btn trigger-fs-btn" data-src="gallery/photos/2025%20halloween%20with%20Sunset%20Morioh.webp" data-title="UNSW Halloween (Sunset Morioh)" data-category="Live Gigs" title="Fullscreen">
+                      <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                    </button>
+                    <button class="card-action-btn trigger-flip-btn" title="Flip Angle">
+                      <svg viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z"/></svg>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <!-- Gig 6: USYD Welcome (Anisyd) -->
-            <div class="gallery-page-card gallery-item" data-category="Live Gigs" data-title="USYD Welcome (Anisyd)">
-              <div class="gallery-visual" style="width: 100%; height: 100%;">
-                <img src="gallery/photos/2025%20anisyd%20march.webp" alt="Anisyd USYD Welcome Concert" style="width: 100%; height: 100%; object-fit: cover;">
-              </div>
-              <div class="gallery-overlay">
-                <span class="gallery-category">Live Gigs</span>
-                <h4 class="gallery-title">Anisyd Welcome</h4>
+            <!-- Gig 4: Jfest Sydney (3D Flipping Card!) -->
+            <div class="gallery-flip-container event-flip-card">
+              <div class="gallery-flip-card">
+                <!-- Front Face -->
+                <div class="gallery-face gallery-page-card">
+                  <div class="gallery-visual" style="width: 100%; height: 100%;">
+                    <img src="gallery/photos/2025%20jfest.JPG" alt="Jfest Sydney" style="width: 100%; height: 100%; object-fit: cover;">
+                  </div>
+                  <div class="gallery-overlay">
+                    <span class="gallery-category">Live Gigs &bull; [ 2 Angles ]</span>
+                    <h4 class="gallery-title">Jfest Sydney</h4>
+                  </div>
+                  <!-- Actions -->
+                  <div class="card-actions-bar">
+                    <button class="card-action-btn trigger-fs-btn" data-src="gallery/photos/2025%20jfest.JPG" data-title="Jfest Sydney Stage" data-category="Live Gigs" title="Fullscreen">
+                      <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                    </button>
+                    <button class="card-action-btn trigger-flip-btn" title="Flip Angle">
+                      <svg viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z"/></svg>
+                    </button>
+                  </div>
+                </div>
+                <!-- Back Face -->
+                <div class="gallery-face gallery-face-back gallery-page-card">
+                  <div class="gallery-visual" style="width: 100%; height: 100%;">
+                    <img src="gallery/photos/2025%20jfest%20with%20kizuna.JPG" alt="Jfest (with Kizuna)" style="width: 100%; height: 100%; object-fit: cover;">
+                  </div>
+                  <div class="gallery-overlay">
+                    <span class="gallery-category">Live Gigs &bull; [ Kizuna Set ]</span>
+                    <h4 class="gallery-title">Jfest Stage B</h4>
+                  </div>
+                  <!-- Actions -->
+                  <div class="card-actions-bar">
+                    <button class="card-action-btn trigger-fs-btn" data-src="gallery/photos/2025%20jfest%20with%20kizuna.JPG" data-title="Jfest (with Kizuna)" data-category="Live Gigs" title="Fullscreen">
+                      <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                    </button>
+                    <button class="card-action-btn trigger-flip-btn" title="Flip Angle">
+                      <svg viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z"/></svg>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <!-- Gig 7: Halloween (with Sunset Morioh) -->
-            <div class="gallery-page-card gallery-item" data-category="Live Gigs" data-title="UNSW Halloween (with Sunset Morioh)">
-              <div class="gallery-visual" style="width: 100%; height: 100%;">
-                <img src="gallery/photos/2025%20halloween%20with%20Sunset%20Morioh.webp" alt="Halloween with Sunset Morioh" style="width: 100%; height: 100%; object-fit: cover;">
-              </div>
-              <div class="gallery-overlay">
-                <span class="gallery-category">Live Gigs</span>
-                <h4 class="gallery-title">UNSW Halloween (Sunset Morioh)</h4>
+            <!-- Gig 5: Wildfire (Single) -->
+            <div class="single-card-wrap gallery-item" data-src="gallery/photos/2024%20wildfire.JPG" data-title="Wildfire Live Concert" data-category="Live Gigs">
+              <div class="gallery-page-card">
+                <div class="gallery-visual" style="width: 100%; height: 100%;">
+                  <img src="gallery/photos/2024%20wildfire.JPG" alt="Wildfire Live Concert" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="gallery-overlay">
+                  <span class="gallery-category">Live Gigs</span>
+                  <h4 class="gallery-title">Mary's Underground</h4>
+                </div>
               </div>
             </div>
 
-            <!-- Gig 8: Jfest (with Kizuna) -->
-            <div class="gallery-page-card gallery-item" data-category="Live Gigs" data-title="Jfest (with Kizuna)">
-              <div class="gallery-visual" style="width: 100%; height: 100%;">
-                <img src="gallery/photos/2025%20jfest%20with%20kizuna.JPG" alt="Jfest with Kizuna" style="width: 100%; height: 100%; object-fit: cover;">
-              </div>
-              <div class="gallery-overlay">
-                <span class="gallery-category">Live Gigs</span>
-                <h4 class="gallery-title">Jfest (Kizuna)</h4>
+            <!-- Gig 6: USYD Welcome (Single) -->
+            <div class="single-card-wrap gallery-item" data-src="gallery/photos/2025%20anisyd%20march.webp" data-title="Anisyd USYD Welcome Concert" data-category="Live Gigs">
+              <div class="gallery-page-card">
+                <div class="gallery-visual" style="width: 100%; height: 100%;">
+                  <img src="gallery/photos/2025%20anisyd%20march.webp" alt="Anisyd USYD Welcome Concert" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="gallery-overlay">
+                  <span class="gallery-category">Live Gigs</span>
+                  <h4 class="gallery-title">Anisyd Welcome</h4>
+                </div>
               </div>
             </div>
-            
+
           </div>
         </div>
       </div>
@@ -372,36 +496,42 @@
         <div class="rolling-window">
           <div class="rolling-track" id="track-cosplay">
             
-            <!-- Cosplay 1: Ave Mujica 1 -->
-            <div class="gallery-page-card gallery-item" data-category="Cosplay Set" data-title="Ave Mujica - Oblivion">
-              <div class="gallery-visual" style="width: 100%; height: 100%;">
-                <img src="gallery/photos/cosplay/ave%20mujica%201.webp" alt="Ave Mujica - Oblivion" style="width: 100%; height: 100%; object-fit: cover;">
-              </div>
-              <div class="gallery-overlay">
-                <span class="gallery-category">Cosplay Set</span>
-                <h4 class="gallery-title">Ave Mujica - Oblivion</h4>
-              </div>
-            </div>
-
-            <!-- Cosplay 2: Ave Mujica 2 -->
-            <div class="gallery-page-card gallery-item" data-category="Cosplay Set" data-title="Ave Mujica - Requiem">
-              <div class="gallery-visual" style="width: 100%; height: 100%;">
-                <img src="gallery/photos/cosplay/ave%20mujica%202.webp" alt="Ave Mujica - Requiem" style="width: 100%; height: 100%; object-fit: cover;">
-              </div>
-              <div class="gallery-overlay">
-                <span class="gallery-category">Cosplay Set</span>
-                <h4 class="gallery-title">Ave Mujica - Requiem</h4>
+            <!-- Cosplay 1: Ave Mujica 1 (Single) -->
+            <div class="single-card-wrap gallery-item" data-src="gallery/photos/cosplay/ave%20mujica%201.webp" data-title="Ave Mujica - Oblivion" data-category="Cosplay Set">
+              <div class="gallery-page-card">
+                <div class="gallery-visual" style="width: 100%; height: 100%;">
+                  <img src="gallery/photos/cosplay/ave%20mujica%201.webp" alt="Ave Mujica - Oblivion" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="gallery-overlay">
+                  <span class="gallery-category">Cosplay Set</span>
+                  <h4 class="gallery-title">Ave Mujica - Oblivion</h4>
+                </div>
               </div>
             </div>
 
-            <!-- Cosplay 3: Ave Mujica 3 -->
-            <div class="gallery-page-card gallery-item" data-category="Cosplay Set" data-title="Ave Mujica - Alter Ego">
-              <div class="gallery-visual" style="width: 100%; height: 100%;">
-                <img src="gallery/photos/cosplay/ave%20mujica%203.webp" alt="Ave Mujica - Alter Ego" style="width: 100%; height: 100%; object-fit: cover;">
+            <!-- Cosplay 2: Ave Mujica 2 (Single) -->
+            <div class="single-card-wrap gallery-item" data-src="gallery/photos/cosplay/ave%20mujica%202.webp" data-title="Ave Mujica - Requiem" data-category="Cosplay Set">
+              <div class="gallery-page-card">
+                <div class="gallery-visual" style="width: 100%; height: 100%;">
+                  <img src="gallery/photos/cosplay/ave%20mujica%202.webp" alt="Ave Mujica - Requiem" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="gallery-overlay">
+                  <span class="gallery-category">Cosplay Set</span>
+                  <h4 class="gallery-title">Ave Mujica - Requiem</h4>
+                </div>
               </div>
-              <div class="gallery-overlay">
-                <span class="gallery-category">Cosplay Set</span>
-                <h4 class="gallery-title">Ave Mujica - Alter Ego</h4>
+            </div>
+
+            <!-- Cosplay 3: Ave Mujica 3 (Single) -->
+            <div class="single-card-wrap gallery-item" data-src="gallery/photos/cosplay/ave%20mujica%203.webp" data-title="Ave Mujica - Alter Ego" data-category="Cosplay Set">
+              <div class="gallery-page-card">
+                <div class="gallery-visual" style="width: 100%; height: 100%;">
+                  <img src="gallery/photos/cosplay/ave%20mujica%203.webp" alt="Ave Mujica - Alter Ego" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="gallery-overlay">
+                  <span class="gallery-category">Cosplay Set</span>
+                  <h4 class="gallery-title">Ave Mujica - Alter Ego</h4>
+                </div>
               </div>
             </div>
 
@@ -465,12 +595,14 @@
         </div>
         
         <div>
-          <div class="footer-links-title">Explore</div>
-          <ul class="footer-menu">
-            <li><a href="index.html#home" class="footer-link">Home</a></li>
-            <li><a href="index.html#about" class="footer-link">The Concept</a></li>
-            <li><a href="gigs.html" class="footer-link">Gigs</a></li>
-          </ul>
+          <div class="footer-grid">
+            <div class="footer-links-title">Explore</div>
+            <ul class="footer-menu">
+              <li><a href="index.html#home" class="footer-link">Home</a></li>
+              <li><a href="index.html#about" class="footer-link">The Concept</a></li>
+              <li><a href="gigs.html" class="footer-link">Gigs</a></li>
+            </ul>
+          </div>
         </div>
         
         <div>
@@ -515,27 +647,61 @@
         });
       });
 
-      // Fullscreen Lightbox Modal Triggers
-      const galleryItems = document.querySelectorAll('.gallery-item');
+      // Fullscreen Lightbox Modal Triggers (for single cards)
+      const singleItems = document.querySelectorAll('.single-card-wrap');
       const lightbox = document.getElementById('lightbox');
       const lightboxContent = document.getElementById('lightbox-content');
       const lightboxTitle = document.getElementById('lightbox-title');
       const lightboxCategory = document.getElementById('lightbox-category');
       const closeBtn = document.getElementById('lightbox-close');
 
-      galleryItems.forEach(item => {
+      singleItems.forEach(item => {
         item.addEventListener('click', () => {
-          const visual = item.querySelector('.gallery-visual').innerHTML;
+          const src = item.getAttribute('data-src');
           const category = item.getAttribute('data-category');
           const title = item.getAttribute('data-title');
 
-          lightboxContent.innerHTML = visual;
+          lightboxContent.innerHTML = `<img src="${src}" alt="${title}">`;
           lightboxTitle.textContent = title;
           lightboxCategory.textContent = category;
 
           lightbox.classList.add('open');
           lightbox.setAttribute('aria-hidden', 'false');
           document.body.style.overflow = 'hidden'; // Stop background scrolling
+        });
+      });
+
+      // Action Handlers inside 3D Flipping Cards
+      const flipContainers = document.querySelectorAll('.gallery-flip-container');
+      
+      flipContainers.forEach(container => {
+        const flipBtns = container.querySelectorAll('.trigger-flip-btn');
+        const fsBtns = container.querySelectorAll('.trigger-fs-btn');
+
+        // Handle 3D flip button toggle
+        flipBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent double trigger
+            container.classList.toggle('flipped');
+          });
+        });
+
+        // Handle fullscreen trigger for the active double-sided image
+        fsBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const src = btn.getAttribute('data-src');
+            const category = btn.getAttribute('data-category');
+            const title = btn.getAttribute('data-title');
+
+            lightboxContent.innerHTML = `<img src="${src}" alt="${title}">`;
+            lightboxTitle.textContent = title;
+            lightboxCategory.textContent = category;
+
+            lightbox.classList.add('open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+          });
         });
       });
 

@@ -959,9 +959,7 @@ body.theme-bright .theme-switcher {
   transition-delay: 0.05s;
 }
 
-.gallery-item:hover .gallery-visual {
-  transform: scale(1.08);
-}
+/* No hover scale zoom on visual photos */
 
 .gallery-item:hover .gallery-overlay {
   opacity: 1;

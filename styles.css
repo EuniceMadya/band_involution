@@ -1867,3 +1867,45 @@ body.theme-pink::before {
   }
 }
 
+/* ==========================================================================
+   BOOTSTRAP-STANDARD EXTRA-SMALL VIEWPORT OVERRIDES (<576px Portrait Phones)
+   ========================================================================== */
+@media (max-width: 575.98px) {
+  /* Reduce vertical section padding by 50% to maximize screen space */
+  section {
+    padding: 4rem 0 !important;
+  }
+
+  /* Reduce container horizontal margins to prevent clipping */
+  .container {
+    padding-left: 1.2rem !important;
+    padding-right: 1.2rem !important;
+  }
+
+  /* Mute card paddings dynamically */
+  .glass-card, .tour-item, .contact-wrapper {
+    padding: 2rem 1.25rem !important;
+  }
+
+  /* Rescale section headings */
+  .section-title {
+    font-size: 1.8rem !important;
+  }
+
+  /* Form field alignments */
+  .form-group input, .form-group textarea {
+    padding: 0.85rem 1.25rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Footer alignments */
+  .footer {
+    padding: 4rem 0 2rem !important;
+  }
+  
+  .footer-brand p {
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+  }
+}
+

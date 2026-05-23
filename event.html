@@ -111,6 +111,8 @@
       border: 1px solid transparent;
       border-radius: 8px;
       transition: var(--transition-fast);
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
 
     .setlist-item:hover {
@@ -123,6 +125,12 @@
       align-items: center;
       gap: 1rem;
       font-weight: 500;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .setlist-track-name span.code-font {
+      word-break: break-all;
     }
 
     .setlist-num {
@@ -135,6 +143,8 @@
       font-family: var(--font-mono);
       font-size: 0.8rem;
       color: var(--text-muted);
+      margin-left: auto;
+      text-align: right;
     }
 
     .details-content h3 {

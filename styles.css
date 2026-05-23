@@ -1,91 +1,94 @@
-/* Import premium Google Fonts (including developer monospaced Fira Code) */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800;900&display=swap');
+/* Import premium Google Fonts (including monospaced Fira Code, mecha Orbitron, Syne, Dela Gothic One, Permanent Marker, Fredoka, and Titan One) */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Orbitron:wght@700;900&family=Outfit:wght@400;600;800;900&family=Syne:wght@700;800&family=Dela+Gothic+One&family=Permanent+Marker&family=Fredoka:wght@700&family=Titan+One&display=swap');
 
-/* Design System & Core Tokens - Theme Variables */
+/* Design System & Core Tokens - Theme Variables (Anime Cyber J-Pop Redesign) */
 :root {
-  /* Default Dark Theme Values - Proper Black & Red Fire Vibe */
-  --bg-primary: #050508;
-  --bg-secondary: #0c0c0e;
-  --bg-tertiary: #141417;
+  /* Cyberpunk Dark Theme Values - Pure J-Rock 'Flame in the Dark' palette (Crimson/Orange/Amber) */
+  --bg-primary: #050404;
+  --bg-secondary: #0f0b0a;
+  --bg-tertiary: #1a1210;
   
-  --accent-primary: #ef4444; /* Vibrant Flame Red */
-  --accent-secondary: #f97316; /* Blazing Orange */
-  --accent-cyan: #f59e0b; /* Glowing Amber */
+  --accent-primary: #e61900; /* Pure Blazing Flame Red */
+  --accent-secondary: #ff5500; /* Blazing Fire Orange */
+  --accent-cyan: #ffa600; /* Luminous Golden Amber */
   --accent-gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   --accent-cyan-gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan));
   
   --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1; /* Slightly brighter gray for high-contrast black text readability */
-  --text-muted: #64748b;
+  --text-secondary: #cbd5e1;
+  --text-muted: #ff5500;
   
-  --glass-bg: rgba(12, 12, 14, 0.78);
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
+  --glass-bg: rgba(15, 11, 10, 0.9);
+  --glass-border: rgba(255, 42, 0, 0.12);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.95);
   
-  --font-headings: 'Outfit', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-headings: 'Orbitron', 'Outfit', sans-serif;
+  --font-body: 'Outfit', sans-serif;
   --font-mono: 'Fira Code', 'Courier New', Courier, monospace;
   
-  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   --transition-fast: all 0.2s ease;
   
   --container-width: 1200px;
-  --logo-shadow: drop-shadow(0 0 12px rgba(239, 68, 68, 0.65)); /* Premium crimson red flame glow */
+  --logo-shadow: drop-shadow(0 0 15px rgba(255, 42, 0, 0.75)); /* Fiery crimson red branding drop shadow */
 }
 
-/* Bright / Light Theme Override */
+/* Daylight Crimson Fire / Solar Day Theme Override */
 body.theme-bright {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-tertiary: #e2e8f0;
+  --bg-primary: #fffcf5; /* Fiery solar daylight off-white */
+  --bg-secondary: #ffebd4; /* Soft sunlight golden background */
+  --bg-tertiary: #ffd6a8;
   
-  --accent-primary: #e11d48; /* Keep flame red for branding highlights */
-  --accent-secondary: #f97316;
-  --accent-cyan: #d97706; /* Darker Amber */
+  --accent-primary: #e11d48; /* Vibrant Crimson Solar Red */
+  --accent-secondary: #ff0055; /* High-Energy Neon Pink-Red */
+  --accent-cyan: #b91c1c; /* Deep Brick Solar Red */
+  --accent-gradient: linear-gradient(135deg, #e11d48, #ff0055);
+  --accent-cyan-gradient: linear-gradient(135deg, #e11d48, #b91c1c);
   
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
+  --text-primary: #3e0512; /* High-Contrast Dark Crimson Solar Slate for perfect readability */
+  --text-secondary: #7c112c;
+  --text-muted: #e11d48;
   
-  --glass-bg: rgba(255, 255, 255, 0.78);
-  --glass-border: rgba(15, 23, 42, 0.08);
-  --glass-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.05);
-  --logo-shadow: drop-shadow(0 1px 3px rgba(15, 23, 42, 0.15)); /* Subtle clean shadow */
+  --glass-bg: rgba(255, 252, 245, 0.85);
+  --glass-border: rgba(225, 29, 72, 0.12);
+  --glass-shadow: 0 8px 32px 0 rgba(225, 29, 72, 0.06);
+  --logo-shadow: drop-shadow(0 2px 6px rgba(225, 29, 72, 0.25));
 }
 
 body.theme-bright .hero-title {
-  background: linear-gradient(180deg, #0f172a 30%, #475569 100%);
+  background: linear-gradient(180deg, #3e0512 35%, #e11d48 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Pink / Sakura Theme Override */
+/* Bright Cherry Blossom / Sakura Theme Override */
 body.theme-pink {
-  --bg-primary: #fff1f2; /* Soft Pastel Pink */
-  --bg-secondary: #ffe4e6;
-  --bg-tertiary: #fecdd3;
+  --bg-primary: #fff0f3; /* Distinctly pink pastel base */
+  --bg-secondary: #ffd6e0; /* Luminous soft blossom pink background */
+  --bg-tertiary: #ffb3c6;
   
-  --accent-primary: #e11d48; /* Intense Rose Magenta */
-  --accent-secondary: #be123c;
-  --accent-cyan: #db2777; /* Deep Pink Accent */
-  --accent-gradient: linear-gradient(135deg, #e11d48, #c084fc);
-  --accent-cyan-gradient: linear-gradient(135deg, #e11d48, #db2777);
+  --accent-primary: #ff2a6d; /* Vibrant Rose Sakura Pink */
+  --accent-secondary: #ff80ab; /* Soft Glowing Rose-Magenta */
+  --accent-cyan: #db2777; /* Deep Cherry Blossom Magenta */
+  --accent-gradient: linear-gradient(135deg, #ff2a6d, #ff80ab);
+  --accent-cyan-gradient: linear-gradient(135deg, #ff2a6d, #db2777);
   
-  --text-primary: #4c0519;
-  --text-secondary: #881337;
-  --text-muted: #fb7185;
+  --text-primary: #4d001e; /* High-Contrast Deep Cherry slate for perfect readability */
+  --text-secondary: #8c003c;
+  --text-muted: #ff6090;
   
-  --glass-bg: rgba(255, 241, 242, 0.8);
-  --glass-border: rgba(225, 29, 72, 0.09);
-  --glass-shadow: 0 8px 32px 0 rgba(225, 29, 72, 0.06);
-  --logo-shadow: drop-shadow(0 0 10px rgba(225, 29, 72, 0.6)); /* Hot pink rose glow */
+  --glass-bg: rgba(255, 240, 243, 0.86);
+  --glass-border: rgba(255, 42, 109, 0.15);
+  --glass-shadow: 0 8px 32px 0 rgba(255, 42, 109, 0.08);
+  --logo-shadow: drop-shadow(0 2px 6px rgba(255, 42, 109, 0.35));
 }
 
 body.theme-pink .hero-title {
-  background: linear-gradient(180deg, #4c0519 30%, #be123c 100%);
+  background: linear-gradient(180deg, #8c003c 35%, #ff758f 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 
 /* Reset & Base Styles */
 *, *::before, *::after {
@@ -385,15 +388,18 @@ body.theme-bright .theme-switcher {
 }
 
 .hero-title {
-  font-size: clamp(3.5rem, 8vw, 6.5rem);
-  font-weight: 900;
-  line-height: 0.95;
-  margin-bottom: 2rem;
+  font-family: 'Funtastic', 'Fredoka', 'Titan One', 'Dela Gothic One', 'Syne', sans-serif !important;
+  font-size: clamp(3rem, 8vw, 5.8rem);
+  line-height: 1.05;
+  margin-bottom: 2.5rem;
   text-transform: uppercase;
-  background: linear-gradient(180deg, #ffffff 30%, #94a3b8 100%);
+  background: linear-gradient(180deg, #ffffff 35%, var(--accent-primary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
+  overflow: visible !important;
+  padding: 0 0.5rem !important;
+  padding-right: 0.15em !important;
 }
 
 .hero-description {
@@ -1347,7 +1353,12 @@ textarea.form-control {
     transform: rotate(-45deg) translate(5px, -5px);
   }
   .hero-title {
-    font-size: 4rem;
+    font-size: clamp(1.8rem, 9.5vw, 3.3rem) !important;
+    white-space: nowrap !important;
+    letter-spacing: -1px !important;
+    display: inline-block !important;
+    padding: 0 1rem !important;
+    max-width: 100% !important;
   }
   .tour-item {
     grid-template-columns: 1fr;
@@ -1537,3 +1548,309 @@ body.theme-pink .fire-animation-wrapper {
     border-radius: 50% 50% 50% 50%;
   }
 }
+
+/* ==========================================================================
+   ANIME CYBERPUNK & MECHA DESIGN EXTENSIONS (VIBRANT J-POP RE-STYLING)
+   ========================================================================== */
+
+/* Cyber Grid Background pattern for high-tech anime mood */
+/* Cyber Grid Background pattern for high-tech anime mood */
+body {
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(255, 42, 0, 0.005) 0%, transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(255, 166, 0, 0.005) 0%, transparent 45%),
+    linear-gradient(rgba(255, 42, 0, 0.004) 1px, transparent 1px), 
+    linear-gradient(90deg, rgba(255, 42, 0, 0.004) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+  position: relative;
+}
+
+/* Global background particle layers */
+
+/* Theme 1: Default Dark Mode - High-density, ultra-bright glittering cyber-sparkles */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(3px 3px at 40px 60px, #ffffff 0%, rgba(255,255,255,0) 80%),
+    radial-gradient(5px 5px at 140px 80px, #ff5500 0%, rgba(255,85,0,0) 80%),
+    radial-gradient(3px 3px at 90px 220px, #ffffff 0%, rgba(255,255,255,0) 80%),
+    radial-gradient(6px 6px at 280px 140px, #ffa600 0%, rgba(255,166,0,0) 80%),
+    radial-gradient(3px 3px at 410px 330px, #ffffff 0%, rgba(255,255,255,0) 80%),
+    radial-gradient(4px 4px at 210px 190px, #ff2a00 0%, rgba(255,42,0,0) 80%),
+    radial-gradient(5px 5px at 470px 450px, #ffffff 0%, rgba(255,255,255,0) 80%),
+    radial-gradient(4px 4px at 340px 280px, #ffa600 0%, rgba(255,166,0,0) 80%);
+  background-repeat: repeat;
+  background-size: 400px 400px;
+  opacity: 0.85 !important;
+  pointer-events: none;
+  z-index: 1;
+  animation: dark-glitter 2.5s infinite ease-in-out;
+}
+
+@keyframes dark-glitter {
+  0%, 100% { opacity: 0.4; transform: scale(0.85); }
+  50% { opacity: 1.0; transform: scale(1.2); }
+}
+
+/* Theme 2: Daylight Sun Day - High-visibility upward rising fire embers */
+body.theme-bright::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(10px 10px at 80px 500px, rgba(255, 60, 0, 0.4) 0%, rgba(255, 60, 0, 0) 70%),
+    radial-gradient(14px 14px at 220px 380px, rgba(255, 106, 0, 0.45) 0%, rgba(255, 106, 0, 0) 70%),
+    radial-gradient(12px 12px at 390px 480px, rgba(230, 81, 0, 0.35) 0%, rgba(230, 81, 0, 0) 70%),
+    radial-gradient(18px 18px at 150px 250px, rgba(255, 60, 0, 0.4) 0%, rgba(255, 60, 0, 0) 70%),
+    radial-gradient(12px 12px at 480px 150px, rgba(255, 106, 0, 0.45) 0%, rgba(255, 106, 0, 0) 70%) !important;
+  background-repeat: repeat !important;
+  background-size: 500px 600px !important;
+  opacity: 0.75;
+  pointer-events: none;
+  z-index: 1;
+  animation: light-embers 10s infinite linear !important;
+}
+
+@keyframes light-embers {
+  0% { background-position: 0 0; opacity: 0.5; }
+  50% { opacity: 0.8; }
+  100% { background-position: 0 -600px; opacity: 0.5; }
+}
+
+/* Theme 3: Bright Cherry Blossom - Soft drifting sakura glowing particles */
+body.theme-pink::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(5px 9px at 60px 80px, rgba(255, 42, 109, 0.25) 0%, rgba(255, 42, 109, 0) 70%),
+    radial-gradient(7px 11px at 280px 340px, rgba(255, 94, 151, 0.28) 0%, rgba(255, 94, 151, 0) 70%),
+    radial-gradient(6px 10px at 490px 190px, rgba(255, 42, 109, 0.22) 0%, rgba(255, 42, 109, 0) 70%),
+    radial-gradient(5px 9px at 150px 500px, rgba(255, 94, 151, 0.2) 0%, rgba(255, 94, 151, 0) 70%) !important;
+  background-repeat: repeat !important;
+  background-size: 600px 700px !important;
+  opacity: 0.75;
+  pointer-events: none;
+  z-index: 1;
+  animation: sakura-drift 16s infinite linear !important;
+}
+
+@keyframes sakura-drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 600px 700px; }
+}
+
+/* aggressive mecha angled border-cuts on primary interactive tags */
+.btn {
+  clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+  border-radius: 0 !important;
+  font-family: var(--font-headings) !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase;
+  font-size: 0.85rem !important;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-cyan)) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 15px rgba(255, 0, 85, 0.35) !important;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 25px rgba(255, 0, 85, 0.65) !important;
+  border-color: var(--accent-secondary) !important;
+}
+
+.btn-secondary {
+  background: rgba(14, 12, 27, 0.5) !important;
+  border: 1px solid var(--glass-border) !important;
+  color: var(--text-primary) !important;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 0, 85, 0.08) !important;
+  border-color: var(--accent-primary) !important;
+  box-shadow: 0 0 15px rgba(255, 0, 85, 0.2) !important;
+}
+
+/* Glassmorphic Cyber cards decoration */
+.glass-card {
+  border: 2px solid var(--glass-border) !important;
+  background: var(--glass-bg) !important;
+  box-shadow: var(--glass-shadow) !important;
+  border-radius: 16px !important;
+  transition: var(--transition-smooth) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add glowing hot-pink corner mecha tag */
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  background: var(--accent-primary);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  opacity: 0.8;
+  transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+  transform: translateY(-6px) scale(1.01) !important;
+  border-color: var(--accent-primary) !important;
+  box-shadow: 0 15px 40px rgba(255, 0, 85, 0.35) !important;
+}
+
+.glass-card:hover::after {
+  background: var(--accent-secondary);
+  width: 20px;
+  height: 20px;
+}
+
+/* Glowing text outlines for J-Pop header styling */
+.section-title {
+  font-family: var(--font-headings) !important;
+  font-size: 2.2rem !important;
+  font-weight: 900 !important;
+  text-transform: uppercase;
+  letter-spacing: 2px !important;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title span {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 8px rgba(255, 0, 85, 0.4));
+}
+
+/* Custom anime star sparkles container & animation */
+.cyber-sparkle {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  fill: var(--accent-secondary);
+  filter: drop-shadow(0 0 8px var(--accent-secondary));
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  animation: rotate-sparkle 3s infinite linear;
+}
+
+@keyframes rotate-sparkle {
+  0% { transform: scale(0.85) rotate(0deg); filter: drop-shadow(0 0 5px var(--accent-secondary)); }
+  50% { transform: scale(1.1) rotate(180deg); filter: drop-shadow(0 0 12px var(--accent-primary)); fill: var(--accent-primary); }
+  100% { transform: scale(0.85) rotate(360deg); filter: drop-shadow(0 0 5px var(--accent-secondary)); }
+}
+
+/* High-contrast developer tag outlines */
+.code-tag {
+  border: 1px solid var(--glass-border) !important;
+  background: rgba(0, 243, 255, 0.03) !important;
+  padding: 0.35rem 0.85rem !important;
+  border-radius: 4px !important;
+  display: inline-block;
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.05);
+}
+
+/* Concert sets listing items adjustments */
+.setlist-item {
+  border-bottom: 1px dashed var(--glass-border) !important;
+  padding: 1rem 0 !important;
+  transition: var(--transition-fast);
+}
+
+.setlist-item:hover {
+  border-bottom-color: var(--accent-primary) !important;
+  background: rgba(255, 0, 85, 0.02);
+  padding-left: 0.5rem !important;
+}
+
+.setlist-num {
+  color: var(--accent-primary) !important;
+  font-weight: 800 !important;
+  text-shadow: 0 0 5px rgba(255, 0, 85, 0.4);
+}
+
+/* sideways image rotation utility */
+.rotate-90 {
+  transform: rotate(-90deg) !important;
+}
+
+/* Fullscreen Lightbox Navigation Controls */
+.lightbox-nav {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: rgba(15, 11, 10, 0.65) !important;
+  border: 1px solid var(--glass-border) !important;
+  color: var(--text-primary) !important;
+  border-radius: 50% !important;
+  width: 56px !important;
+  height: 56px !important;
+  display: none; /* Shown dynamically in JS when multiple images exist */
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: var(--transition-smooth) !important;
+  z-index: 3100 !important;
+  padding: 0 !important;
+  outline: none !important;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+.lightbox-nav svg {
+  width: 26px !important;
+  height: 26px !important;
+  fill: currentColor !important;
+}
+
+.lightbox-nav:hover {
+  background: var(--accent-primary) !important;
+  border-color: var(--accent-primary) !important;
+  box-shadow: 0 0 20px var(--accent-primary) !important;
+  transform: translateY(-50%) scale(1.1) !important;
+}
+
+.lightbox-prev {
+  left: 2.5rem !important;
+}
+
+.lightbox-next {
+  right: 2.5rem !important;
+}
+
+/* Responsive adjustments for small phone screens */
+@media (max-width: 768px) {
+  .lightbox-nav {
+    width: 44px !important;
+    height: 44px !important;
+    background: rgba(15, 11, 10, 0.8) !important;
+  }
+  .lightbox-nav svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  .lightbox-prev {
+    left: 1rem !important;
+  }
+  .lightbox-next {
+    right: 1rem !important;
+  }
+}
+

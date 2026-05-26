@@ -164,39 +164,8 @@
 </head>
 <body>
 
-  <!-- Header & Navigation -->
-  <header class="navbar scrolled" id="navbar">
-    <div class="container nav-container" style="height: 65px;">
-      <a href="index.html#home" class="nav-logo" id="logo">
-        <img src="logos/involution%20band%20logo%20dark.png" alt="!nvolution Logo" class="logo-img">
-      </a>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav>
-        <ul class="nav-menu" id="nav-menu">
-          <li><a href="index.html#home" class="nav-link">Home</a></li>
-          <li><a href="index.html#about" class="nav-link">The Concept</a></li>
-          <li><a href="gigs.html" class="nav-link">Gigs</a></li>
-          <li><a href="songs.html" class="nav-link">Songs</a></li>
-          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-          <li><a href="members.html" class="nav-link">Members</a></li>
-          <li><a href="#" class="nav-link active">Merch</a></li>
-          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-        </ul>
-      </nav>
-      
-      <div class="theme-switcher-container">
-        <div class="theme-switcher" id="theme-switcher">
-          <button class="theme-btn active" data-theme="dark" aria-label="Select Dark Theme" title="Dark Theme"></button>
-          <button class="theme-btn" data-theme="bright" aria-label="Select Bright Theme" title="Bright Theme"></button>
-          <button class="theme-btn" data-theme="pink" aria-label="Select Pink Theme" title="Pink Theme"></button>
-        </div>
-      </div>
-    </div>
-  </header>
+  <!-- Header Placeholder -->
+  <div id="header-placeholder"></div>
 
   <!-- Merch Hero Section -->
   <section class="merch-hero">
@@ -407,7 +376,11 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer Placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Hidden static footer -->
+  <div style="display: none;">
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -476,8 +449,10 @@
       </div>
     </div>
   </footer>
+  </div>
 
-  <!-- Controller linking -->
+  <!-- Interactivity Scripts -->
+  <script src="layout-loader.js"></script>
   <script src="app.js"></script>
   
   <!-- Merch dynamic purchase modal hooks -->

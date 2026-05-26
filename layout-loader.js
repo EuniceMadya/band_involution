@@ -1,21 +1,25 @@
 /**
  * !NVOLUTION - Shared Layout Framework Loader
- * Dynamically imports isolated header/footer HTML components,
- * synchronizes theme states, binds mobile overlays, and highlights active links automatically.
+ * Centralized dynamic template fragments engine with automatic relative path resolution.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Path depth resolution
+  const isSubpage = window.location.pathname.includes('/events/');
+  const prefix = isSubpage ? '../' : '';
+
   // 1. LOAD SHARED NAVBAR HEADER
   const headerPlaceholder = document.getElementById('header-placeholder');
   if (headerPlaceholder) {
-    fetch('header.html')
+    fetch(prefix + 'components/header.html')
       .then(response => {
         if (!response.ok) throw new Error('Failed to load header fragment');
         return response.text();
       })
       .then(html => {
         headerPlaceholder.innerHTML = html;
-        initializeNavbarEngine();
+        resolveHeaderPaths(isSubpage, prefix);
+        initializeNavbarEngine(isSubpage, prefix);
       })
       .catch(err => console.error('Header Loader Error:', err));
   }
@@ -23,13 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. LOAD SHARED BRAND FOOTER
   const footerPlaceholder = document.getElementById('footer-placeholder');
   if (footerPlaceholder) {
-    fetch('footer.html')
+    fetch(prefix + 'components/footer.html')
       .then(response => {
         if (!response.ok) throw new Error('Failed to load footer fragment');
         return response.text();
       })
       .then(html => {
         footerPlaceholder.innerHTML = html;
+        resolveFooterPaths(isSubpage, prefix);
         initializeFooterEngine();
       })
       .catch(err => console.error('Footer Loader Error:', err));
@@ -37,9 +42,64 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
+ * Prepend relative paths (../) to all navbar links and logos inside header when on subpages.
+ */
+function resolveHeaderPaths(isSubpage, prefix) {
+  if (!isSubpage) return;
+
+  // Prepend to all nav links
+  const navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && !href.startsWith('http') && href !== '#') {
+      link.setAttribute('href', prefix + href);
+    }
+  });
+
+  // Prepend to logo links and logo images
+  const logoLink = document.getElementById('logo');
+  if (logoLink) {
+    const href = logoLink.getAttribute('href');
+    if (href) logoLink.setAttribute('href', prefix + href);
+  }
+}
+
+/**
+ * Prepend relative paths (../) to all links and logos inside footer when on subpages.
+ */
+function resolveFooterPaths(isSubpage, prefix) {
+  if (!isSubpage) return;
+
+  // Prepend to footer Brand Logo link and Image
+  const footerBrandImg = document.querySelector('.footer-brand h4 img');
+  if (footerBrandImg) {
+    const src = footerBrandImg.getAttribute('src');
+    if (src) footerBrandImg.setAttribute('src', prefix + src);
+  }
+
+  // Prepend to footer links list
+  const footerLinks = document.querySelectorAll('.footer-menu a, .footer ul a');
+  footerLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && !href.startsWith('http') && href !== '#') {
+      link.setAttribute('href', prefix + href);
+    }
+  });
+
+  // Prepend to Xiaohongshu profile link in footer
+  const socials = document.querySelectorAll('.footer-socials a');
+  socials.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && href.startsWith('logos/')) {
+      link.setAttribute('href', prefix + href);
+    }
+  });
+}
+
+/**
  * Binds theme swappers, mobile nav drawers, and handles page path highlighting dynamically.
  */
-function initializeNavbarEngine() {
+function initializeNavbarEngine(isSubpage, prefix) {
   const navToggle = document.getElementById('nav-toggle');
   const navMenu = document.getElementById('nav-menu');
   const navbar = document.getElementById('navbar');
@@ -51,7 +111,6 @@ function initializeNavbarEngine() {
       navToggle.classList.toggle('open');
       navMenu.classList.toggle('open');
       
-      // Prevent body scroll when drawer is open
       if (navMenu.classList.contains('open')) {
         document.body.style.overflow = 'hidden';
       } else {
@@ -59,7 +118,6 @@ function initializeNavbarEngine() {
       }
     });
 
-    // Close drawer if user clicks anywhere outside
     document.addEventListener('click', (e) => {
       if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && e.target !== navToggle) {
         navToggle.classList.remove('open');
@@ -75,9 +133,9 @@ function initializeNavbarEngine() {
       if (window.scrollY > 30) {
         navbar.classList.add('scrolled');
       } else {
-        // Keep navbar permanently scrolled if not on index landing hero view
-        const isLanding = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/');
-        if (!isLanding) {
+        // Keep navbar scrolled if not on index landing hero view
+        const isLanding = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') || (!isSubpage && window.location.pathname === '');
+        if (!isLanding || isSubpage) {
           navbar.classList.add('scrolled');
         } else {
           navbar.classList.remove('scrolled');
@@ -92,18 +150,16 @@ function initializeNavbarEngine() {
   
   let activePageId = page || 'home';
   if (activePageId.startsWith('index') || activePageId === '') activePageId = 'home';
-  // If on an event sub-page, highlight the main 'Gigs' tab!
-  if (activePageId.startsWith('event-')) activePageId = 'gigs';
+  if (isSubpage) activePageId = 'gigs';
 
   const activeLink = document.querySelector(`.nav-link[data-page="${activePageId}"]`);
   if (activeLink) {
-    // Remove active from others
     document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
     activeLink.classList.add('active');
   }
 
   // 4. THEME SWAPPER ENGINE INTEGRATION
-  initializeThemeEngine();
+  initializeThemeEngine(prefix);
 }
 
 /**
@@ -119,20 +175,18 @@ function initializeFooterEngine() {
 /**
  * Global Theme Switcher engine bound to dynamic components.
  */
-function initializeThemeEngine() {
+function initializeThemeEngine(prefix) {
   const themeSwitcher = document.getElementById('theme-switcher');
   if (!themeSwitcher) return;
 
   const themeBtns = themeSwitcher.querySelectorAll('.theme-btn');
   
-  // Load saved theme from LocalStorage, fallback to default dark
   const savedTheme = localStorage.getItem('selected-theme') || 'dark';
-  setGlobalTheme(savedTheme);
+  setGlobalTheme(savedTheme, prefix);
 
   themeBtns.forEach(btn => {
     const btnTheme = btn.getAttribute('data-theme');
     
-    // Sync initial button active state
     if (btnTheme === savedTheme) {
       btn.classList.add('active');
     } else {
@@ -143,11 +197,9 @@ function initializeThemeEngine() {
       e.stopPropagation();
       const targetTheme = btn.getAttribute('data-theme');
       
-      // Save choice & set classes
       localStorage.setItem('selected-theme', targetTheme);
-      setGlobalTheme(targetTheme);
+      setGlobalTheme(targetTheme, prefix);
 
-      // Toggle active button classes
       themeBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     });
@@ -157,7 +209,7 @@ function initializeThemeEngine() {
 /**
  * Applies class states to body element globally.
  */
-function setGlobalTheme(theme) {
+function setGlobalTheme(theme, prefix) {
   document.body.classList.remove('theme-dark', 'theme-bright', 'theme-pink');
   
   if (theme === 'dark') {
@@ -168,15 +220,15 @@ function setGlobalTheme(theme) {
     document.body.classList.add('theme-pink');
   }
 
-  // Centralized navbar branding image swap matching active theme
+  // Centralized navbar branding image swap with path depth prefix resolution
   const logoImgs = document.querySelectorAll('.logo-img');
   logoImgs.forEach(logoImg => {
     if (theme === 'dark') {
-      logoImg.src = 'logos/involution%20band%20logo%20bright.png';
+      logoImg.src = prefix + 'logos/involution%20band%20logo%20bright.png';
     } else if (theme === 'bright') {
-      logoImg.src = 'logos/involution%20band%20logo%20dark.png';
+      logoImg.src = prefix + 'logos/involution%20band%20logo%20dark.png';
     } else if (theme === 'pink') {
-      logoImg.src = 'logos/involution%20band%20logo%20pink.png';
+      logoImg.src = prefix + 'logos/involution%20band%20logo%20pink.png';
     }
   });
 }

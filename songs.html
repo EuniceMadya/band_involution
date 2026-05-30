@@ -97,6 +97,17 @@
         padding: 1.5rem 1rem;
       }
     }
+    
+    /* Tab Filter Styles */
+    .tab-btn.active {
+      background: var(--accent-cyan-gradient) !important;
+      border-color: transparent !important;
+      color: var(--bg-primary) !important;
+      box-shadow: 0 4px 15px rgba(255, 166, 0, 0.25) !important;
+    }
+    body.theme-pink .tab-btn.active {
+      box-shadow: 0 4px 15px rgba(255, 42, 109, 0.3) !important;
+    }
   </style>
 </head>
 <body>
@@ -123,6 +134,14 @@
   <section class="songs-wrapper" style="padding-top: 0;">
     <div class="container" style="max-width: 900px;">
       
+      <!-- Category Tab Controller -->
+      <div class="songs-tabs" style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 3rem; flex-wrap: wrap;">
+        <button class="tab-btn active" data-filter="all" style="padding: 0.8rem 2.2rem; font-family: var(--font-headings); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; border-radius: 50px; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.03); color: var(--text-secondary); cursor: pointer; transition: var(--transition-smooth);" onmouseover="this.style.borderColor='var(--accent-primary)'" onmouseout="if(!this.classList.contains('active')) this.style.borderColor='var(--glass-border)'">All Transmissions</button>
+        <button class="tab-btn" data-filter="anime" style="padding: 0.8rem 2.2rem; font-family: var(--font-headings); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; border-radius: 50px; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.03); color: var(--text-secondary); cursor: pointer; transition: var(--transition-smooth);" onmouseover="this.style.borderColor='var(--accent-primary)'" onmouseout="if(!this.classList.contains('active')) this.style.borderColor='var(--glass-border)'">Anime Songs</button>
+        <button class="tab-btn" data-filter="vocaloid" style="padding: 0.8rem 2.2rem; font-family: var(--font-headings); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; border-radius: 50px; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.03); color: var(--text-secondary); cursor: pointer; transition: var(--transition-smooth);" onmouseover="this.style.borderColor='var(--accent-primary)'" onmouseout="if(!this.classList.contains('active')) this.style.borderColor='var(--glass-border)'">Vocaloid</button>
+        <button class="tab-btn" data-filter="other" style="padding: 0.8rem 2.2rem; font-family: var(--font-headings); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; border-radius: 50px; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.03); color: var(--text-secondary); cursor: pointer; transition: var(--transition-smooth);" onmouseover="this.style.borderColor='var(--accent-primary)'" onmouseout="if(!this.classList.contains('active')) this.style.borderColor='var(--glass-border)'">Other Genre</button>
+      </div>
+      
       <div class="songs-table-card">
         
         <!-- Table Header (Desktop only) -->
@@ -130,172 +149,179 @@
           <div>// STATUS</div>
           <div>// TITLE_NAME</div>
           <div>// AUDIO_SOURCE</div>
-          <div style="text-align: right;">// COMPOSER</div>
+          <div style="text-align: right;">// SINGER</div>
         </div>
         
         <!-- Song 1 -->
-        <div class="song-log-row">
+        <div class="song-log-row" data-category="anime">
           <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Fukashigi no Carte <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(不可思議のカルテ)</span></div>
-          <div class="song-origin"><span class="code-tag">Bunny Girl Senpai</span></div>
-          <div class="song-artist">Various</div>
+          <div class="song-title">Bauklötze</div>
+          <div class="song-origin"><span class="code-tag">Attack on Titan (進撃の巨人)</span></div>
+          <div class="song-artist">Hiroyuki Sawano</div>
         </div>
         
         <!-- Song 2 -->
-        <div class="song-log-row">
+        <div class="song-log-row" data-category="anime">
           <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">To the Beginning</div>
-          <div class="song-origin"><span class="code-tag">Fate/Zero</span></div>
-          <div class="song-artist">Kalafina</div>
+          <div class="song-title">Call of Silence</div>
+          <div class="song-origin"><span class="code-tag">Attack on Titan (進撃の巨人)</span></div>
+          <div class="song-artist">Hiroyuki Sawano</div>
         </div>
         
         <!-- Song 3 -->
-        <div class="song-log-row">
-          <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Lagtrain</div>
-          <div class="song-origin"><span class="code-tag">Vocaloid</span></div>
-          <div class="song-artist">inabakumori</div>
-        </div>
-        
-        <!-- Song 4 -->
-        <div class="song-log-row">
-          <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Bauklötze</div>
-          <div class="song-origin"><span class="code-tag">Attack on Titan</span></div>
-          <div class="song-artist">Hiroyuki Sawano</div>
-        </div>
-        
-        <!-- Song 5 -->
-        <div class="song-log-row">
-          <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Magia</div>
-          <div class="song-origin"><span class="code-tag">Madoka Magica</span></div>
-          <div class="song-artist">Kalafina</div>
-        </div>
-        
-        <!-- Song 6 -->
-        <div class="song-log-row">
-          <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Ichiban no Takaramono</div>
-          <div class="song-origin"><span class="code-tag">Angel Beats!</span></div>
-          <div class="song-artist">Jun Maeda</div>
-        </div>
-        
-        <!-- Song 7 -->
-        <div class="song-log-row">
-          <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Call of Silence</div>
-          <div class="song-origin"><span class="code-tag">Attack on Titan</span></div>
-          <div class="song-artist">Hiroyuki Sawano</div>
-        </div>
-        
-        <!-- Song 8 -->
-        <div class="song-log-row">
-          <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Renai Circulation <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(恋爱サーキュレーション)</span></div>
-          <div class="song-origin"><span class="code-tag">Bakemonogatari</span></div>
-          <div class="song-artist">Hanazawa Kana</div>
-        </div>
-        
-        <!-- Song 9 -->
-        <div class="song-log-row">
-          <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Fuwa Fuwa Time <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(ふわふわ時間)</span></div>
-          <div class="song-origin"><span class="code-tag">K-On!</span></div>
-          <div class="song-artist">Sakurakou K-Onbu</div>
-        </div>
-        
-        <!-- Song 10 -->
-        <div class="song-log-row">
-          <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Snow Halation</div>
-          <div class="song-origin"><span class="code-tag">Love Live!</span></div>
-          <div class="song-artist">μ's</div>
-        </div>
-        
-        <!-- Song 11 -->
-        <div class="song-log-row">
-          <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Sprinter</div>
-          <div class="song-origin"><span class="code-tag">Kara no Kyoukai</span></div>
-          <div class="song-artist">Kalafina</div>
-        </div>
-        
-        <!-- Song 12 -->
-        <div class="song-log-row">
-          <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Catch You Catch Me</div>
-          <div class="song-origin"><span class="code-tag">Cardcaptor Sakura</span></div>
-          <div class="song-artist">Gumi</div>
-        </div>
-        
-        <!-- Song 13 -->
-        <div class="song-log-row">
+        <div class="song-log-row" data-category="anime">
           <div class="song-status">[ COMPILED ]</div>
           <div class="song-title">Ashes on The Fire</div>
-          <div class="song-origin"><span class="code-tag">Attack on Titan</span></div>
+          <div class="song-origin"><span class="code-tag">Attack on Titan (進撃の巨人)</span></div>
           <div class="song-artist">Kohta Yamamoto</div>
         </div>
         
-        <!-- Song 14 -->
-        <div class="song-log-row">
-          <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">If I Could Be a Constellation</div>
-          <div class="song-origin"><span class="code-tag">Bocchi the Rock!</span></div>
-          <div class="song-artist">Kessoku Band</div>
-        </div>
-        
-        <!-- Song 15 -->
-        <div class="song-log-row">
-          <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Sekai ga Owaru Made wa... <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(世界が終るまでは…)</span></div>
-          <div class="song-origin"><span class="code-tag">Slam Dunk</span></div>
-          <div class="song-artist">WANDS</div>
-        </div>
-        
-        <!-- Song 16 -->
-        <div class="song-log-row">
-          <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Monster <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(怪物)</span></div>
-          <div class="song-origin"><span class="code-tag">Beastars</span></div>
-          <div class="song-artist">YOASOBI</div>
-        </div>
-        
-        <!-- Song 17 -->
-        <div class="song-log-row">
+        <!-- Song 4 -->
+        <div class="song-log-row" data-category="anime">
           <div class="song-status">[ COMPILED ]</div>
           <div class="song-title">Mayoiuta <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(迷星叫)</span></div>
           <div class="song-origin"><span class="code-tag">MyGO!!!!!</span></div>
           <div class="song-artist">BanG Dream!</div>
         </div>
         
-        <!-- Song 18 -->
-        <div class="song-log-row">
+        <!-- Song 5 -->
+        <div class="song-log-row" data-category="anime">
           <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Alter Ego</div>
+          <div class="song-title">Alter Ego <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(颜)</span></div>
           <div class="song-origin"><span class="code-tag">Ave Mujica</span></div>
           <div class="song-artist">BanG Dream!</div>
         </div>
         
-        <!-- Song 19 -->
-        <div class="song-log-row">
+        <!-- Song 6 -->
+        <div class="song-log-row" data-category="anime">
           <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Rally Go Round</div>
-          <div class="song-origin"><span class="code-tag">Nisekoi</span></div>
-          <div class="song-artist">LiSA</div>
+          <div class="song-title">KillKiss</div>
+          <div class="song-origin"><span class="code-tag">Ave Mujica</span></div>
+          <div class="song-artist">BanG Dream!</div>
         </div>
         
-
-        <!-- Song 21 -->
-        <div class="song-log-row">
+        <!-- Song 7 -->
+        <div class="song-log-row" data-category="anime">
           <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Lacrimosa</div>
-          <div class="song-origin"><span class="code-tag">Black Butler</span></div>
+          <div class="song-title">Fukashigi no Carte <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(不可思議のカルテ)</span></div>
+          <div class="song-origin"><span class="code-tag">Bunny Girl Senpai (青ブタ)</span></div>
+          <div class="song-artist">Various</div>
+        </div>
+        
+        <!-- Song 8 -->
+        <div class="song-log-row" data-category="anime">
+          <div class="song-status">[ COMPILED ]</div>
+          <div class="song-title">To the Beginning</div>
+          <div class="song-origin"><span class="code-tag">Fate/Zero</span></div>
           <div class="song-artist">Kalafina</div>
         </div>
         
+        <!-- Song 9 -->
+        <div class="song-log-row" data-category="anime">
+          <div class="song-status">[ COMPILED ]</div>
+          <div class="song-title">Magia</div>
+          <div class="song-origin"><span class="code-tag">Madoka Magica (まどマギ)</span></div>
+          <div class="song-artist">Kalafina</div>
+        </div>
+        
+        <!-- Song 10 -->
+        <div class="song-log-row" data-category="anime">
+          <div class="song-status">[ COMPILED ]</div>
+          <div class="song-title">Ichiban no Takaramono <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(一番の宝物)</span></div>
+          <div class="song-origin"><span class="code-tag">Angel Beats!</span></div>
+          <div class="song-artist">Jun Maeda</div>
+        </div>
+        
+        <!-- Song 11 -->
+        <div class="song-log-row" data-category="anime">
+          <div class="song-status">[ COMPILED ]</div>
+          <div class="song-title">Renai Circulation <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(恋爱サーキュレーション)</span></div>
+          <div class="song-origin"><span class="code-tag">Bakemonogatari (化物語)</span></div>
+          <div class="song-artist">Hanazawa Kana</div>
+        </div>
+        
+        <!-- Song 12 -->
+        <div class="song-log-row" data-category="anime">
+          <div class="song-status">[ COMPILED ]</div>
+          <div class="song-title">Fuwa Fuwa Time <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(ふわふわ時間)</span></div>
+          <div class="song-origin"><span class="code-tag">K-ON! (けいおん!)</span></div>
+          <div class="song-artist">Sakurakou K-Onbu</div>
+        </div>
+        
+        <!-- Song 13 -->
+        <div class="song-log-row" data-category="anime">
+          <div class="song-status">[ COMPILED ]</div>
+          <div class="song-title">Snow Halation</div>
+          <div class="song-origin"><span class="code-tag">Love Live! (ラブライブ!)</span></div>
+          <div class="song-artist">μ's</div>
+        </div>
+        
+        <!-- Song 14 -->
+        <div class="song-log-row" data-category="anime">
+          <div class="song-status">[ COMPILED ]</div>
+          <div class="song-title">Sprinter</div>
+          <div class="song-origin"><span class="code-tag">Kara no Kyoukai (空の境界)</span></div>
+          <div class="song-artist">Kalafina</div>
+        </div>
+        
+        <!-- Song 15 -->
+        <div class="song-log-row" data-category="anime">
+          <div class="song-status">[ COMPILED ]</div>
+          <div class="song-title">Catch You Catch Me</div>
+          <div class="song-origin"><span class="code-tag">Cardcaptor Sakura (カードキャプターさくら)</span></div>
+          <div class="song-artist">Gumi</div>
+        </div>
+        
+        <!-- Song 16 -->
+        <div class="song-log-row" data-category="anime">
+          <div class="song-status">[ COMPILED ]</div>
+          <div class="song-title">If I Could Be a Constellation <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(星座になれたら)</span></div>
+          <div class="song-origin"><span class="code-tag">Bocchi the Rock! (ぼっち・ざ・ろっく!)</span></div>
+          <div class="song-artist">Kessoku Band</div>
+        </div>
+        
+        <!-- Song 17 -->
+        <div class="song-log-row" data-category="anime">
+          <div class="song-status">[ COMPILED ]</div>
+          <div class="song-title">Sekai ga Owaru Made wa... <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(世界が終るまでは…)</span></div>
+          <div class="song-origin"><span class="code-tag">Slam Dunk (スラムダンク)</span></div>
+          <div class="song-artist">WANDS</div>
+        </div>
+        
+        <!-- Song 18 -->
+        <div class="song-log-row" data-category="anime">
+          <div class="song-status">[ COMPILED ]</div>
+          <div class="song-title">Monster <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(怪物)</span></div>
+          <div class="song-origin"><span class="code-tag">BEASTARS (ビースターズ)</span></div>
+          <div class="song-artist">YOASOBI</div>
+        </div>
+        
+        <!-- Song 19 -->
+        <div class="song-log-row" data-category="anime">
+          <div class="song-status">[ COMPILED ]</div>
+          <div class="song-title">Rally Go Round</div>
+          <div class="song-origin"><span class="code-tag">Nisekoi (ニセコイ)</span></div>
+          <div class="song-artist">LiSA</div>
+        </div>
+        
+        <!-- Song 20 -->
+        <div class="song-log-row" data-category="anime">
+          <div class="song-status">[ COMPILED ]</div>
+          <div class="song-title">Lacrimosa</div>
+          <div class="song-origin"><span class="code-tag">Black Butler (黒執事)</span></div>
+          <div class="song-artist">Kalafina</div>
+        </div>
+        
+        <!-- Song 21 -->
+        <div class="song-log-row" data-category="vocaloid">
+          <div class="song-status">[ COMPILED ]</div>
+          <div class="song-title">Lagtrain <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(ラグトレイン)</span></div>
+          <div class="song-origin"><span class="code-tag">Vocaloid</span></div>
+          <div class="song-artist">inabakumori</div>
+        </div>
+        
         <!-- Song 22 -->
-        <div class="song-log-row">
+        <div class="song-log-row" data-category="vocaloid">
           <div class="song-status">[ COMPILED ]</div>
           <div class="song-title">Romeo and Cinderella <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(ロミオとシンデレラ)</span></div>
           <div class="song-origin"><span class="code-tag">Vocaloid</span></div>
@@ -303,7 +329,7 @@
         </div>
         
         <!-- Song 23 -->
-        <div class="song-log-row">
+        <div class="song-log-row" data-category="vocaloid">
           <div class="song-status">[ COMPILED ]</div>
           <div class="song-title">KING</div>
           <div class="song-origin"><span class="code-tag">Vocaloid</span></div>
@@ -311,11 +337,19 @@
         </div>
         
         <!-- Song 24 -->
-        <div class="song-log-row">
+        <div class="song-log-row" data-category="other">
           <div class="song-status">[ COMPILED ]</div>
-          <div class="song-title">Kuruoshiki Yasashisa ni Mau <span style="color: var(--accent-secondary); font-size: 0.8rem; font-weight: 500;">(Kill Kiss)</span></div>
-          <div class="song-origin"><span class="code-tag">Ave Mujica</span></div>
-          <div class="song-artist">BanG Dream!</div>
+          <div class="song-title">Complicated</div>
+          <div class="song-origin"><span class="code-tag">Avril Lavigne</span></div>
+          <div class="song-artist">Avril Lavigne</div>
+        </div>
+        
+        <!-- Song 25 -->
+        <div class="song-log-row" data-category="other">
+          <div class="song-status">[ COMPILED ]</div>
+          <div class="song-title">Wake Me Up When September Ends</div>
+          <div class="song-origin"><span class="code-tag">Green Day</span></div>
+          <div class="song-artist">Green Day</div>
         </div>
 
       </div>
@@ -408,5 +442,57 @@
   <!-- Interactivity Scripts -->
   <script src="layout-loader.js"></script>
   <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const songRows = document.querySelectorAll('.songs-table-card .song-log-row:not(.code-font)');
+      
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => {
+            b.classList.remove('active');
+            b.style.background = 'rgba(255, 255, 255, 0.03)';
+            b.style.borderColor = 'var(--glass-border)';
+            b.style.boxShadow = 'none';
+            b.style.color = 'var(--text-secondary)';
+          });
+          btn.classList.add('active');
+          btn.style.background = 'var(--accent-cyan-gradient)';
+          btn.style.borderColor = 'transparent';
+          btn.style.boxShadow = '0 4px 15px rgba(255, 166, 0, 0.2)';
+          btn.style.color = 'var(--bg-primary)';
+          
+          const filter = btn.getAttribute('data-filter');
+          
+          songRows.forEach(row => {
+            row.style.opacity = '0';
+            row.style.transform = 'translateY(8px)';
+            row.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+            
+            setTimeout(() => {
+              const category = row.getAttribute('data-category');
+              if (filter === 'all' || category === filter) {
+                row.style.display = 'grid';
+                setTimeout(() => {
+                  row.style.opacity = '1';
+                  row.style.transform = 'translateY(0)';
+                }, 30);
+              } else {
+                row.style.display = 'none';
+              }
+            }, 200);
+          });
+        });
+      });
+      
+      const activeBtn = document.querySelector('.tab-btn.active');
+      if (activeBtn) {
+        activeBtn.style.background = 'var(--accent-cyan-gradient)';
+        activeBtn.style.borderColor = 'transparent';
+        activeBtn.style.color = 'var(--bg-primary)';
+        activeBtn.style.boxShadow = '0 4px 15px rgba(255, 166, 0, 0.2)';
+      }
+    });
+  </script>
 </body>
 </html>

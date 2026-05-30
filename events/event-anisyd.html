@@ -11,9 +11,17 @@
   
   <link rel="stylesheet" href="../styles.css">
   <style>
+    :root {
+      --accent-primary: #ff2a6d;
+      --accent-secondary: #ff80ab;
+      --accent-cyan: #db2777;
+      --accent-gradient: linear-gradient(135deg, #ff2a6d 0%, #ff80ab 100%);
+      --accent-cyan-gradient: linear-gradient(135deg, #ff2a6d 0%, #db2777 100%);
+      --glass-border: rgba(255, 42, 109, 0.15);
+    }
     .event-hero {
       padding: 10rem 0 6rem;
-      background: radial-gradient(circle at 50% 20%, rgba(239, 68, 68, 0.15) 0%, rgba(6, 7, 13, 0) 50%);
+      background: radial-gradient(circle at 50% 20%, rgba(255, 42, 109, 0.2) 0%, rgba(6, 7, 13, 0) 50%);
       text-align: center;
     }
     .event-title {
@@ -185,11 +193,11 @@
         <div class="event-briefing-card glass-card">
           <span class="code-comment" style="font-family: var(--font-mono); display: block; margin-bottom: 0.75rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-primary);">// Operation Briefing</span>
           <div class="briefing-text">
-            Performing live at Manning Bar for USYD Anisyd. Delivering warm, high-energy J-Pop sets and Vocaloid covers in a classic student campus lounge.
+            Transmitting live from the cherry blossom-themed Anisyd Welcome Party. Fusing acoustic J-Pop melodies, instrumental rock orchestrations, and high-voltage anime classics directly onto the campus grid.
           </div>
           <div class="detail-paragraphs">
-            <p>Our performance at the USYD Welcome Party represented a highly successful university stage integration. Coordinating our core active vocalists alongside guest visual orchestrations, the show connected directly with high-energy student crowds at the campus Manning Bar lounge.</p>
-            <p>Fusing dynamic J-Pop sets like *Renai Circulation* alongside Vocaloid display sets, the performance compiled with zero errors on the grid, escaping the social grind through highly energetic student community assemblies.</p>
+            <p>Decorated in a beautiful cherry blossom sakura aesthetic, our deployment at USYD Manning Bar represented a spectacular high-energy welcome sequence. We split the set into four optimized transmission modules: live acoustic, full band rock, instrumental mecha themes, and classic high-octane J-Rock.</p>
+            <p>From the gentle acoustic harmonies of *Ichiban no Takaramono* to the sweeping instrumental rock precision of *Ashes on the Fire* and raw drive of *Fuwa Fuwa Time*, the cherry blossom stage successfully mapped with zero compiled errors, bringing high-powered musical escape to the USYD student community.</p>
           </div>
           <div style="margin-top: 3rem; border-top: 1px solid var(--glass-border); padding-top: 2.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
             <span class="code-font" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-primary); font-weight: bold; display: block; letter-spacing: 1px;">// DEPLOYMENT_DISPATCH_QUEUE</span>
@@ -202,11 +210,18 @@
           <h3 class="setlist-title code-font">// Performed_Setlist()</h3>
           
           <div class="setlist-list">
-            <div class="setlist-item"><span class="setlist-num">01</span><span class="setlist-song">Renai Circulation</span><span class="setlist-origin">Bakemonogatari</span></div>
-            <div class="setlist-item"><span class="setlist-num">02</span><span class="setlist-song">Lagtrain</span><span class="setlist-origin">Vocaloid</span></div>
-            <div class="setlist-item"><span class="setlist-num">03</span><span class="setlist-song">Catch You Catch Me</span><span class="setlist-origin">Cardcaptor Sakura</span></div>
-            <div class="setlist-item"><span class="setlist-num">04</span><span class="setlist-song">Snow Halation</span><span class="setlist-origin">Love Live!</span></div>
-            <div class="setlist-item"><span class="setlist-num">05</span><span class="setlist-song">Romeo and Cinderella</span><span class="setlist-origin">Vocaloid</span></div>
+            <div class="setlist-item"><span class="setlist-num">01</span><span class="setlist-song">To the Beginning</span><span class="setlist-origin">Fate/Zero</span></div>
+            <div class="setlist-item"><span class="setlist-num">02</span><span class="setlist-song">Magia</span><span class="setlist-origin">Madoka Magica</span></div>
+            <div class="setlist-item"><span class="setlist-num">03</span><span class="setlist-song">Renai Circulation</span><span class="setlist-origin">Bakemonogatari</span></div>
+            <div class="setlist-item"><span class="setlist-num">04</span><span class="setlist-song">Ichiban no Takaramono (Acoustic)</span><span class="setlist-origin">Angel Beats!</span></div>
+            <div class="setlist-item"><span class="setlist-num">05</span><span class="setlist-song">Catch You Catch Me (Acoustic)</span><span class="setlist-origin">Cardcaptor Sakura</span></div>
+            <div class="setlist-item"><span class="setlist-num">06</span><span class="setlist-song">Lagtrain (ラグトレイン)</span><span class="setlist-origin">Vocaloid</span></div>
+            <div class="setlist-item"><span class="setlist-num">07</span><span class="setlist-song">Call of Silence (Instrumental)</span><span class="setlist-origin">Attack on Titan</span></div>
+            <div class="setlist-item"><span class="setlist-num">08</span><span class="setlist-song">Ashes on The Fire (Instrumental)</span><span class="setlist-origin">Attack on Titan</span></div>
+            <div class="setlist-item"><span class="setlist-num">09</span><span class="setlist-song">Bauklötze</span><span class="setlist-origin">Attack on Titan</span></div>
+            <div class="setlist-item"><span class="setlist-num">10</span><span class="setlist-song">Fuwa Fuwa Time (ふわふわ時間)</span><span class="setlist-origin">K-ON!</span></div>
+            <div class="setlist-item"><span class="setlist-num">11</span><span class="setlist-song">Snow Halation</span><span class="setlist-origin">Love Live!</span></div>
+            <div class="setlist-item"><span class="setlist-num">12</span><span class="setlist-song">Sprinter</span><span class="setlist-origin">Kara no Kyoukai</span></div>
           </div>
         </div>
 

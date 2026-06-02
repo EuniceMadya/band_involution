@@ -173,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const nameVal = document.getElementById('input-name').value.trim();
       const emailVal = document.getElementById('input-email').value.trim();
+      const messageVal = document.getElementById('input-message').value.trim();
       const submitBtn = document.getElementById('btn-submit-newsletter');
       
       if (!nameVal || !emailVal) {
@@ -182,20 +183,46 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       
-      // Simulate request transition state
-      submitBtn.textContent = "Decrypting access keys...";
+      // Cyberpunk sending/loading visual state
+      const originalBtnText = submitBtn.textContent;
+      submitBtn.textContent = "Encrypting transmission...";
       submitBtn.disabled = true;
-      
-      setTimeout(() => {
-        submitBtn.textContent = "Request Access";
+      feedbackMessage.style.display = "none";
+
+      // FormSubmit AJAX Submission
+      fetch("https://formsubmit.co/ajax/bandinvolution@gmail.com", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: nameVal,
+          email: emailVal,
+          message: messageVal
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        submitBtn.textContent = originalBtnText;
         submitBtn.disabled = false;
-        
-        feedbackMessage.textContent = `Welcome to the anti-involution grid, ${nameVal}. Secure keys dispatched to ${emailVal}.`;
-        feedbackMessage.className = "form-message success";
+
+        if (data.success === "true" || data.success === true) {
+          feedbackMessage.textContent = `Transmission successfully routed to anti-involution grid. Secure connection established, ${nameVal}!`;
+          feedbackMessage.className = "form-message success";
+          feedbackMessage.style.display = "block";
+          newsletterForm.reset();
+        } else {
+          throw new Error("Transmission error");
+        }
+      })
+      .catch(err => {
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+        feedbackMessage.textContent = "Route blocked. Please re-initialize transmission or check network access.";
+        feedbackMessage.className = "form-message error";
         feedbackMessage.style.display = "block";
-        
-        newsletterForm.reset();
-      }, 1800);
+      });
     });
   }
 

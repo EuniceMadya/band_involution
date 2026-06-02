@@ -927,6 +927,14 @@
         card.addEventListener('click', () => {
           card.classList.toggle('flipped');
         });
+
+        // Prevent link clicks from flipping the card
+        const links = card.querySelectorAll('a');
+        links.forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.stopPropagation();
+          });
+        });
       });
     });
   </script>
